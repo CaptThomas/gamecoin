@@ -3,7 +3,7 @@ COPY ./gamecoin.conf /root/.gamecoin/gamecoin.conf
 COPY . /gamecoin
 WORKDIR /gamecoin
 #shared libraries and dependencies
-RUN apt update
+RUN sudo apt update
 RUN apt-get install -y build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils
 RUN apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
 #BerkleyDB for wallet support
