@@ -14,6 +14,7 @@ RUN cd build_unix/
 RUN ../dist/configure --prefix=/usr/local --enable-cxx
 RUN make
 RUN make install
+RUN cd ../..
 #upnp
 RUN apt-get install -y libminiupnpc-dev
 #ZMQ
