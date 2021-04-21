@@ -1,7 +1,7 @@
 Gamecoin Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/gamecoin-project/gamecoin.svg?branch=master)](https://travis-ci.org/gamecoin-project/gamecoin)
+[![Build Status](https://travis-ci.org/ThomasTail/gamecoin.svg?branch=master)](https://travis-ci.org/gamecoin-project/gamecoin)
 
 https://gamecoin.org
 
