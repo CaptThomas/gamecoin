@@ -82,8 +82,4 @@ deploy:
   - "src/gamecoin-cli"
   - "src/gamecoin-tx"
   skip_cleanup: true
-  on:
-    branches:
-      only:
-        - master
     
