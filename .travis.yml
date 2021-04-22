@@ -73,5 +73,4 @@ deploy:
   api_key: $KEY
   file: src/gamecoind, src/gamecoin-cli, src/gamecoin-tx
   skip_cleanup: true
-  on:
-    tags: true
+    
