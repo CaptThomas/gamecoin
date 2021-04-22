@@ -63,9 +63,15 @@ script:
     - ./configure --disable-wallet
     - make
     - sudo make install
-    - mkdir build && cd build
     - export LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib
     - if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then extended="--extended --exclude pruning,dbcrash"; fi
 after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
+deploy:
+  provider: releases
+  api_key: $KEY
+  file: src/gamecoind, src/gamecoin-cli, src/gamecoin-tx
+  skip_cleanup: true
+  on:
+    tags: true
