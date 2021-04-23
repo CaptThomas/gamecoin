@@ -11,10 +11,11 @@ RUN apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chro
 RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.zip
 RUN unzip db-4.8.30.zip
 RUN cd db-4.8.30
-RUN dist/configure --prefix=/usr/local --enable-cxx
+RUN cd dist
+RUN ./configure --prefix=/usr/local --enable-cxx
 RUN make
 RUN make install
-RUN cd ..
+RUN cd ../..
 #upnp
 RUN apt-get install -y libminiupnpc-dev
 #ZMQ
