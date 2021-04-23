@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=noninteractive
 COPY ./gamecoin.conf /root/.gamecoin/gamecoin.conf
 COPY . /gamecoin
 WORKDIR /gamecoin
