@@ -10,6 +10,8 @@ RUN apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chro
 #BerkleyDB for wallet support
 RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.zip
 RUN unzip db-4.8.30.zip
+WORKDIR /gamecoin/db-4.8.30/dbinc
+RUN sed -i 's/__atomic_compare_exchange/__atomic_compare_exchange_db/g' atomic.h
 WORKDIR /gamecoin/db-4.8.30/build_unix
 RUN ../dist/configure --prefix=/usr/local --enable-cxx
 RUN make
