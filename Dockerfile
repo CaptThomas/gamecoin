@@ -10,12 +10,11 @@ RUN apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chro
 #BerkleyDB for wallet support
 RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.zip
 RUN unzip db-4.8.30.zip
-RUN cd db-4.8.30
-RUN sudo cd dist
-RUN sudo ./configure --prefix=/usr/local --enable-cxx
-RUN sudo make
-RUN sudo make install
-RUN cd ../..
+WORKDIR /gamecoin/db-4.8.30/build_unix
+RUN ../dist/configure --prefix=/usr/local --enable-cxx
+RUN make
+RUN make install
+WORKDIR /gamecoin
 #upnp
 RUN apt-get install -y libminiupnpc-dev
 #ZMQ
