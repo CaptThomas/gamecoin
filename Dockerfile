@@ -22,6 +22,7 @@ RUN apt-get install -y libminiupnpc-dev
 #ZMQ
 RUN apt-get install -y libzmq3-dev
 #build gamecoin source
+RUN chmod +x autogen.sh
 RUN ./autogen.sh
 RUN ./configure
 RUN make
