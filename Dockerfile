@@ -16,15 +16,14 @@ WORKDIR /gamecoin/db-4.8.30/build_unix
 RUN ../dist/configure --prefix=/usr/local --enable-cxx
 RUN make
 RUN make install
-WORKDIR /gamecoin
 #upnp
 RUN apt-get install -y libminiupnpc-dev
 #ZMQ
 RUN apt-get install -y libzmq3-dev
 #build gamecoin source
-RUN chmod +x autogen.sh
-CMD "./autogen.sh"
-CMD "./configure"
+RUN cd /gamecoin \
+&& ./autogen.sh \
+&& ./configure
 RUN make
 RUN make install
 #open service port
