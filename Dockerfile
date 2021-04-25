@@ -24,9 +24,9 @@ RUN apt-get install -y libzmq3-dev
 #build gamecoin source
 RUN cd ../.. \
 && chmod +x autogen.sh \
-&& sudo autogen.sh \
+&& sudo ./autogen.sh \
 && chmod +x configure \
-&& sudo configure
+&& sudo ./configure
 RUN make
 RUN make install
 #open service port
