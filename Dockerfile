@@ -31,4 +31,4 @@ RUN make
 RUN make install
 #open service port
 EXPOSE 62005 62006
-CMD ["gamecoind", "--printtoconsole"]
+CMD gamecoind --printtoconsole
