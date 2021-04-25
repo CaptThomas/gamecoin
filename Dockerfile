@@ -24,7 +24,7 @@ RUN apt-get install -y libzmq3-dev
 RUN cd ../.. \
 && chmod +x autogen.sh \
 && ./autogen.sh \
-&& chmod +x configure
+&& chmod +x configure \
 && ./configure
 RUN make
 RUN make install
