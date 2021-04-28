@@ -49,6 +49,9 @@
 #include <boost/algorithm/string/join.hpp>
 #include <boost/thread.hpp>
 
+#include <random>
+#include <ctime>
+
 #if defined(NDEBUG)
 # error "Gamecoin cannot be compiled without assertions."
 #endif
@@ -89,6 +92,8 @@ CBlockPolicyEstimator feeEstimator;
 CTxMemPool mempool(&feeEstimator);
 
 static void CheckBlockIndex(const Consensus::Params& consensusParams);
+
+static CAmount lastReward = 2 * COIN;
 
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
@@ -1037,17 +1042,27 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
                 pindex->ToString(), pindex->GetBlockPos().ToString());
     return true;
 }
+double generate(double min, double max)
+{
+    using namespace std;
 
+    static default_random_engine generator(unsigned(time(nullptr)));
+    uniform_real_distribution<double> distribution(min, max);
+
+    return distribution(generator);
+}
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
-        return 0;
-
-    CAmount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
-    nSubsidy >>= halvings;
+    double halvings = static_cast<double>(nHeight) / static_cast<double>(consensusParams.nSubsidyHalvingInterval);
+    CAmount nSubsidy = lastReward;
+    if (halvings < 1.0)
+        return nSubsidy;
+    double intpart, multiplier;
+    if (modf (halvings, &intpart) == 0.0)
+        muliplier = generate(0.5, 1.5);
+        CAmount newSubsidy = multiplier * nSubsidy;
+        lastReward = newSubsidy;
+        return newSubsidy;
     return nSubsidy;
 }
 
