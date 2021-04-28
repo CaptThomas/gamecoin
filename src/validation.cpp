@@ -1058,11 +1058,13 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings < 1.0)
         return nSubsidy;
     double intpart, multiplier;
-    if (modf (halvings, &intpart) == 0.0)
-        muliplier = generate(0.5, 1.5);
+    if (modf (halvings, &intpart) == 0.0) 
+    {
+        multiplier = generate(0.5, 1.5);
         CAmount newSubsidy = multiplier * nSubsidy;
         lastReward = newSubsidy;
         return newSubsidy;
+    }
     return nSubsidy;
 }
 
