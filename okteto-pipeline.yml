@@ -7,6 +7,7 @@ deploy:
   - wget http://download.oracle.com/berkeley-db/db-4.8.30.zip
   - unzip db-4.8.30.zip
   - cd db-4.8.30/dist/
+  - chmod +x configure
   - sudo ./configure --prefix=/usr/local --enable-cxx
   - make
   - sudo make install
