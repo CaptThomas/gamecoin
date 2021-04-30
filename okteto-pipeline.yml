@@ -6,8 +6,7 @@ deploy:
   - sudo apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
   - wget http://download.oracle.com/berkeley-db/db-4.8.30.zip
   - unzip db-4.8.30.zip
-  - cd db-4.8.30/dbinc
-  - cd ../build_unix
+  - cd db-4.8.30/build_unix
   - ../dist/configure --prefix=/usr/local --enable-cxx
   - make
   - sudo make install
