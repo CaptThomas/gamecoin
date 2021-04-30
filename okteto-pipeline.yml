@@ -1,10 +1,28 @@
 icon: https://apps.okteto.com/movies/icon.png
 deploy:
-  - curl -fsSL https://get.docker.com -o get-docker.sh
-  - sh get-docker.sh
-  - sudo su
-  - dockerd
-  - docker run cappthomas/gamecoin:latest
+  - git clone https://github.com/ThomasTail/gamecoin
+  - cd gamecoin
+  - sudo apt-get install -y build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils wget unzip 
+  - sudo apt-get install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev
+  - wget http://download.oracle.com/berkeley-db/db-4.8.30.zip
+  - unzip db-4.8.30.zip
+  - cd db-4.8.30/dbinc
+  - sed -i 's/__atomic_compare_exchange/__atomic_compare_exchange_db/g' atomic.h
+  - cd ../build_unix
+  - ../dist/configure --prefix=/usr/local --enable-cxx
+  - make
+  - sudo make install
+  - sudo apt-get install -y libminiupnpc-dev
+  - sudo apt-get install -y libzmq3-dev
+  - sudo apt-get update
+  - cd ../.. 
+  - chmod +x autogen.sh  
+  - sudo ./autogen.sh  
+  - chmod +x configure  
+  - sudo ./configure
+  - make
+  - sudo make
+  - gamecoind -reindex --printtoconsole
 devs:
   - api/okteto.yml
   - frontend/okteto.yml
