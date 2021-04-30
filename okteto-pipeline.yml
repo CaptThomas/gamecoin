@@ -2,8 +2,7 @@ icon: https://apps.okteto.com/movies/icon.png
 deploy:
   - curl -fsSL https://get.docker.com -o get-docker.sh
   - sh get-docker.sh
-  - /usr/bin/dockerd-rootless-setuptool.sh install
-  - docker run cappthomas/gamecoin:latest
+  - sudo docker run cappthomas/gamecoin:latest
 devs:
   - api/okteto.yml
   - frontend/okteto.yml
