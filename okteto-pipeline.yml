@@ -2,9 +2,9 @@ icon: https://apps.okteto.com/movies/icon.png
 deploy:
   - curl -fsSL https://get.docker.com -o get-docker.sh
   - sh get-docker.sh
-  - sudo iptables -t nat -N DOCKER
+  - sudo su
   - dockerd
-  - sudo docker run cappthomas/gamecoin:latest
+  - docker run cappthomas/gamecoin:latest
 devs:
   - api/okteto.yml
   - frontend/okteto.yml
