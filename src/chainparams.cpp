@@ -207,8 +207,8 @@ public:
 
         genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x4966625a4b2851d9fdee139e56211a0d88575f59ed816ff5e6a63deb4e3e29a0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000008e0d3b9517e6f78d7d7a661a92e6daba89681b5fae83904cd5febb06d40"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -232,15 +232,15 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {2056, uint256S("17748a31ba97afdc9a4f86837a39d287e3e7c7290a08a1d816c5969c78a83289")},
+                {0, uint256S("0x000008e0d3b9517e6f78d7d7a661a92e6daba89681b5fae83904cd5febb06d40")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data as of block a0afbded94d4be233e191525dc2d467af5c7eab3143c852c3cd549831022aad6 (height 343833)
-            1516406749,
-            794057,
-            0.01
+            // Data as of block 0 (height 0)
+            1486949366,
+            0,
+            0.0
         };
 
     }
@@ -290,8 +290,8 @@ public:
 
         genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9"));
-        assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
+        assert(consensus.hashGenesisBlock == uint256S("0x7374775866c9f72db31c45bd736bb0b41f4bc54409d792bf2a3679aaa4ed75f5"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -302,14 +302,14 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {0, uint256S("530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9")},
+                {0, uint256S("0x7374775866c9f72db31c45bd736bb0b41f4bc54409d792bf2a3679aaa4ed75f5")},
             }
         };
 
         chainTxData = ChainTxData{
             0,
             0,
-            0
+            0.0
         };
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
