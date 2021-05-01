@@ -1,9 +1,10 @@
-deploy:
-  docker:
-    web: Dockerfile
-run:
-  web: gamecoind --reindex -printtoconsole
-  worker:
-    command:
-      - gamecoind --reindex -printtoconsole
-    image: web
+steps:
+  deploy:
+    docker:
+      web: Dockerfile
+  run:
+   web: gamecoind --reindex -printtoconsole
+   worker:
+      command:
+        - gamecoind --reindex -printtoconsole
+      image: web
