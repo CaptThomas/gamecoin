@@ -118,10 +118,10 @@ public:
         nDefaultPort = 62005;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1619970709, 462830, 504365040, 1, 2 * COIN);
+        genesis = CreateGenesisBlock(1619971641, 462830, 0x1d00ffff, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000adc685b478c36fe41fd17bac25fe79453d9c5992ab2670688599d02a015"));
-        assert(genesis.hashMerkleRoot == uint256S("0x541522e64706ebd59c736c62e02373675fe4a91bba2f174dc5e6cc1027b24565"));
+        assert(genesis.hashMerkleRoot == uint256S("0xaa7b8d781373cd0d87c783b9e7694446f2e16115c1eaefd69437c8a002aaaba9"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seed-a.gamecoin.loshan.co.uk", true);
@@ -151,7 +151,7 @@ public:
 
         chainTxData = ChainTxData{
             // Data as of block 59c9b9d3fec105bdc716d84caa7579503d5b05b73618d0bf2d5fa639f780a011 (height 1353397).
-            1619970709, // * UNIX timestamp of last known number of transactions
+            1619971641, // * UNIX timestamp of last known number of transactions
             0,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.0     // * estimated number of transactions per second after that timestamp
