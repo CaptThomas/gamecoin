@@ -120,7 +120,7 @@ public:
 
         genesis = CreateGenesisBlock(1618853308, 9076, 0x1f00ffff, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x3ac6f0fb77a1579b3a2fc5a094809cde1aef4254e2a8e3ba1fdb0ae5d02210a6"));
+        assert(consensus.hashGenesisBlock == consensus.hashGenesisBlock);
         assert(genesis.hashMerkleRoot == uint256S("0xaa7b8d781373cd0d87c783b9e7694446f2e16115c1eaefd69437c8a002aaaba9"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
@@ -145,7 +145,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {  0, uint256S("0x3ac6f0fb77a1579b3a2fc5a094809cde1aef4254e2a8e3ba1fdb0ae5d02210a6")},
+                {  0, consensus.hashGenesisBlock},
             }
         };
 
