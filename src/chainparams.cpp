@@ -101,10 +101,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1517356801; // January 31st, 2018
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000002ebcfe2dd9eff82666");
+        consensus.nMinimumChainWork = uint256S("0x00000769a1187c1d1c5c707fa4823aefdee2014e84525c208dae1fc2e0b09e69");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = genesis.GetHash(); //1353397
+        consensus.defaultAssumeValid = uint256S("0x00000769a1187c1d1c5c707fa4823aefdee2014e84525c208dae1fc2e0b09e69"); //1353397
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -118,10 +118,10 @@ public:
         nDefaultPort = 62005;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1618853308, 9076, 0x1f00ffff, 1, 2 * COIN);
+        genesis = CreateGenesisBlock(1619970323, 145500, 504365040, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == genesis.GetHash());
-        assert(genesis.hashMerkleRoot == genesis.hashMerkleRoot);
+        assert(consensus.hashGenesisBlock == uint256S("0x0a70a2cafa7a728c678331a776336b92e6949968aa0b6935e3054319f5893e1b"));
+        assert(genesis.hashMerkleRoot == uint256S("0x00000769a1187c1d1c5c707fa4823aefdee2014e84525c208dae1fc2e0b09e69"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seed-a.gamecoin.loshan.co.uk", true);
@@ -145,13 +145,13 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {  0, genesis.GetHash()},
+                {  0, uint256S("0x0a70a2cafa7a728c678331a776336b92e6949968aa0b6935e3054319f5893e1b")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data as of block 59c9b9d3fec105bdc716d84caa7579503d5b05b73618d0bf2d5fa639f780a011 (height 1353397).
-            1618853308, // * UNIX timestamp of last known number of transactions
+            1619970323, // * UNIX timestamp of last known number of transactions
             0,  // * total number of transactions between genesis and that timestamp
                     //   (the tx=... number in the SetBestChain debug.log lines)
             0.0     // * estimated number of transactions per second after that timestamp
