@@ -104,7 +104,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000002ebcfe2dd9eff82666");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x59c9b9d3fec105bdc716d84caa7579503d5b05b73618d0bf2d5fa639f780a011"); //1353397
+        consensus.defaultAssumeValid = consensus.hashGenesisBlock; //1353397
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -121,7 +121,7 @@ public:
         genesis = CreateGenesisBlock(1618853308, 9076, 0x1f00ffff, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == consensus.hashGenesisBlock);
-        assert(genesis.hashMerkleRoot == uint256S("0xaa7b8d781373cd0d87c783b9e7694446f2e16115c1eaefd69437c8a002aaaba9"));
+        assert(genesis.hashMerkleRoot == genesis.hashMerkleRoot);
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seed-a.gamecoin.loshan.co.uk", true);
