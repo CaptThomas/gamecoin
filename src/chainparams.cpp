@@ -104,7 +104,7 @@ public:
         consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00000000c15d6f77de70eaaf32fcba0478b423e4c4f81e2d2c6436f422ae2e3d"); //1353397
+        consensus.defaultAssumeValid = uint256S("0xcd444f191d7c0541f167fe7443b07bc019ea92e59dd45c3b7b0eb7852ebf66ca"); //0
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -118,10 +118,10 @@ public:
         nDefaultPort = 62005;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1619971641, 734526767, 0x1d00ffff, 1, 2 * COIN);
+        genesis = CreateGenesisBlock(1619971641, 734535071, 0x1f0fffff, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000000c15d6f77de70eaaf32fcba0478b423e4c4f81e2d2c6436f422ae2e3d"));
-        assert(genesis.hashMerkleRoot == uint256S("0xaa7b8d781373cd0d87c783b9e7694446f2e16115c1eaefd69437c8a002aaaba9"));
+        assert(genesis.hashMerkleRoot == uint256S("0xcd444f191d7c0541f167fe7443b07bc019ea92e59dd45c3b7b0eb7852ebf66ca"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.emplace_back("seed-a.gamecoin.loshan.co.uk", true);
@@ -145,7 +145,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {  0, uint256S("0x00000000c15d6f77de70eaaf32fcba0478b423e4c4f81e2d2c6436f422ae2e3d")},
+                {  0, uint256S("0xcd444f191d7c0541f167fe7443b07bc019ea92e59dd45c3b7b0eb7852ebf66ca")},
             }
         };
 
