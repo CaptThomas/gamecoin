@@ -27,7 +27,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     CBlock genesis;
     genesis.nTime    = nTime;
     genesis.nBits    = nBits;
-    genesis.nNonce   = ArithToUint256(arith_uint256(nNonce));
+    genesis.nNonce   = nNonce;
     genesis.nVersion = nVersion;
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
     genesis.hashPrevBlock.SetNull();
@@ -117,38 +117,7 @@ public:
         pchMessageStart[3] = 0x45;
         nDefaultPort = 62005;
         nPruneAfterHeight = 100000;
-        // calculate Genesis Block
-        // Reset genesis
-        consensus.hashGenesisBlock = uint256S("0x");
-        std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");
-        if (true && (genesis.GetHash(consensus) != consensus.hashGenesisBlock)) {
-//                     LogPrintf("Calculating Mainnet Genesis Block:\n");
-            arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
-            uint256 hash;
-            genesis.nNonce = ArithToUint256(0);
-            while (UintToArith256(genesis.GetHash(consensus)) > hashTarget)
-            {
-                genesis.nNonce = ArithToUint256(UintToArith256(genesis.nNonce) + 1);
-                         if (genesis.nNonce == ArithToUint256(arith_uint256(0)))
-                         {
-                             LogPrintf("NONCE WRAPPED, incrementing time");
-                             std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
-                             ++genesis.nTime;
-                         }
-
-                         if ((int)genesis.nNonce.GetUint64(0) % 10000 == 0)
-                         {
-                              std::cout << strNetworkID << " hashTarget: " << hashTarget.ToString() << " nonce: " << genesis.nNonce.ToString() << " time: " << genesis.nTime << " hash: " << genesis.GetHash(consensus).ToString().c_str() << "\r";
-                         }
-
-            }
-                     std::cout << "Mainnet ---\n";
-                     std::cout << "  nonce: " << genesis.nNonce.ToString() <<  "\n";
-                     std::cout << "   time: " << genesis.nTime << "\n";
-                     std::cout << "   hash: " << genesis.GetHash(consensus).ToString().c_str() << "\n";
-                     std::cout << "   merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
-        }
-        std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
+        
         genesis = CreateGenesisBlock(1619971641, 734535071, 0x1f0fffff, 1, 2 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000000c15d6f77de70eaaf32fcba0478b423e4c4f81e2d2c6436f422ae2e3d"));
