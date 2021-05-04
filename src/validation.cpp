@@ -1046,7 +1046,7 @@ double generate(double min, double max)
 {
     using namespace std;
 
-    static default_random_engine generator(unsigned(time(nullptr)));
+    static default_random_engine generator(62005);
     uniform_real_distribution<double> distribution(min, max);
 
     return distribution(generator);
