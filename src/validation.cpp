@@ -93,7 +93,6 @@ CTxMemPool mempool(&feeEstimator);
 
 static void CheckBlockIndex(const Consensus::Params& consensusParams);
 
-static CAmount lastReward = 2 * COIN;
 
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
@@ -1042,11 +1041,11 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
                 pindex->ToString(), pindex->GetBlockPos().ToString());
     return true;
 }
-double generate(double min, double max)
+double generate(double min, double max, int seed)
 {
     using namespace std;
 
-    static default_random_engine generator(62005);
+    static default_random_engine generator(seed);
     uniform_real_distribution<double> distribution(min, max);
 
     return distribution(generator);
@@ -1054,18 +1053,14 @@ double generate(double min, double max)
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
     double halvings = static_cast<double>(nHeight) / static_cast<double>(consensusParams.nSubsidyHalvingInterval);
-    CAmount nSubsidy = lastReward;
+    CAmount nSubsidy = 2 * COIN;
     if (halvings < 1.0)
         return nSubsidy;
-    double intpart, multiplier;
-    if (modf (halvings, &intpart) == 0.0) 
-    {
-        multiplier = generate(0.5, 1.5);
-        CAmount newSubsidy = multiplier * nSubsidy;
-        lastReward = newSubsidy;
-        return newSubsidy;
-    }
-    return nSubsidy;
+    int half = (int) halvings;
+    double multiplier;
+    multiplier = generate(0.5, 1.5, half);
+    CAmount newSubsidy = multiplier * nSubsidy;
+    return newSubsidy;
 }
 
 bool IsInitialBlockDownload()
