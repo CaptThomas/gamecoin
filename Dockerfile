@@ -31,5 +31,5 @@ WORKDIR /gamecoin
 RUN make
 RUN make install
 #open service port
-EXPOSE 62005 62006
+EXPOSE 62005 9332
 CMD gamecoind -reindex --printtoconsole
