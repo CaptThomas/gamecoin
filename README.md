@@ -69,4 +69,4 @@ not straightforward.
 Docker Build Node
 ------------
 
-If you would like to host a node easily, use our docker image at captthomas/gamecoin. All you need to do is pull and build it. Then just run it and you have your node up. Our primary nodes are gamenode.ml:62005 and gamenode.ga:62004.
+If you would like to host a node easily, use our docker image at captthomas/gamecoin. All you need to do is pull and build it. Then just run it and you have your node up. Our primary node to connect to all other nodes (like a directory) is gamenode.ml:62005. Most of our work is done on the cloud, but this one has all our nodes connected so just addnode it and you will be connected to everyone else.
