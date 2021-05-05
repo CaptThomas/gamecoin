@@ -33,6 +33,7 @@
 #include "tinyformat.h"
 #include "txdb.h"
 #include "txmempool.h"
+#include "uint256.cpp"
 #include "ui_interface.h"
 #include "undo.h"
 #include "util.h"
@@ -44,6 +45,7 @@
 
 #include <atomic>
 #include <sstream>
+#include <bits/stdc++.h>
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/join.hpp>
@@ -1041,7 +1043,19 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
                 pindex->ToString(), pindex->GetBlockPos().ToString());
     return true;
 }
-double generate(double min, double max, uint256 seed)
+int ASCIISentence(std::string str)
+{
+    using namespace std;
+    int l = str.length();
+    int convert;
+    int sum = 0;
+    for (int i = 0; i < l; i++) {
+        convert = str[i] - NULL;
+        sum = sum + convert;
+    }
+    return sum;
+}
+double generate(double min, double max, int seed)
 {
     using namespace std;
 
@@ -1059,8 +1073,11 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     uint256 prevHash;
     prevHash = pindexBestHeader->pprev->GetBlockHash();
     // Get previous block hash to use as seed
+    string hashHex = std::string prevHash::ToString();
+    int intHex = ASCIISentence(hashHex);
     double multiplier;
-    multiplier = generate(0.5, 1.5, prevHash);
+    int half = (int) halvings;
+    multiplier = generate(0.5, 1.5, intHex * half);
     CAmount newSubsidy = multiplier * nSubsidy;
     return newSubsidy;
 }
