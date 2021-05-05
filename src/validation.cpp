@@ -1041,7 +1041,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
                 pindex->ToString(), pindex->GetBlockPos().ToString());
     return true;
 }
-double generate(double min, double max, int seed)
+double generate(double min, double max, uint256 seed)
 {
     using namespace std;
 
@@ -1059,10 +1059,9 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     uint256 prevHash = 0;
     prevHash = pindexBestHeader->pprev->GetBlockHash();
     // Get previous block hash to use as seed
-    int half = (int) halvings;
+    uint256 half = (uint256) halvings;
     double multiplier;
-    int signedhash = (int) prevHash;
-    multiplier = generate(0.5, 1.5, (half * signedhash));
+    multiplier = generate(0.5, 1.5, (half * prevHash));
     CAmount newSubsidy = multiplier * nSubsidy;
     return newSubsidy;
 }
