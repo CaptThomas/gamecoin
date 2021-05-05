@@ -67,6 +67,7 @@ CCriticalSection cs_main;
 BlockMap mapBlockIndex;
 CChain chainActive;
 CBlockIndex *pindexBestHeader = nullptr;
+CBlockIndex* unipindex;
 CWaitableCriticalSection csBestBlock;
 CConditionVariable cvBlockChange;
 int nScriptCheckThreads = 0;
@@ -1041,6 +1042,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
     if (block.GetHash() != pindex->GetBlockHash())
         return error("ReadBlockFromDisk(CBlock&, CBlockIndex*): GetHash() doesn't match index for %s at %s",
                 pindex->ToString(), pindex->GetBlockPos().ToString());
+    unipindex = pindex;
     return true;
 }
 int ASCIISentence(std::string str)
@@ -1066,21 +1068,20 @@ double generate(double min, double max, int seed)
 }
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    using namespace std;
-    double halvings = static_cast<double>(nHeight) / static_cast<double>(consensusParams.nSubsidyHalvingInterval);
     CAmount nSubsidy = 2 * COIN;
-    if (halvings < 1.0)
-        return nSubsidy;
     uint256 prevHash;
-    prevHash = pindexBestHeader->pprev->GetBlockHash();
-    // Get previous block hash to use as seed
-    std::string hashHex = prevHash.ToString();
-    int intHex = ASCIISentence(hashHex);
-    double multiplier;
-    int half = (int) halvings;
-    multiplier = generate(0.5, 1.5, intHex * half);
-    CAmount newSubsidy = multiplier * nSubsidy;
-    return newSubsidy;
+    if(unipindex->pprev)
+	{
+		prevHash = unipindex->pprev->GetBlockHash();
+	}
+    if (nHeight > 2)
+    {
+        std::string cseed_str = prevHash.ToString().substr(8,7);
+        int seed = ASCIISentence(cseed_str);
+        double multiplier = generate(0.5, 1.5, seed);
+        nSubsidy = multiplier * nSubsidy;
+    }
+    return nSubsidy;
 }
 
 bool IsInitialBlockDownload()
