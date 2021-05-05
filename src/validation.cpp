@@ -1057,11 +1057,8 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (halvings < 1.0)
         return nSubsidy;
     uint256 prevHash = 0;
-        if(pindex->pprev)
-        {
-                prevHash = pindexBestHeader->pprev->GetBlockHash();
-                // Get previous block hash to use as seed
-        }
+    prevHash = pindexBestHeader->pprev->GetBlockHash();
+    // Get previous block hash to use as seed
     int half = (int) halvings;
     double multiplier;
     int signedhash = (int) prevHash;
