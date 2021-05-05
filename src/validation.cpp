@@ -1056,10 +1056,11 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     CAmount nSubsidy = 2 * COIN;
     if (halvings < 1.0)
         return nSubsidy;
-    uint256 prevHash = 0;
+    uint256 prevHash;
     prevHash = pindexBestHeader->pprev->GetBlockHash();
     // Get previous block hash to use as seed
-    uint256 half = (uint256) halvings;
+    int halfint = (int) halvings;
+    uint256 half = (uint256) halfint;
     double multiplier;
     multiplier = generate(0.5, 1.5, (half * prevHash));
     CAmount newSubsidy = multiplier * nSubsidy;
