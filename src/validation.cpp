@@ -1066,6 +1066,7 @@ double generate(double min, double max, int seed)
 }
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
+    using namespace std;
     double halvings = static_cast<double>(nHeight) / static_cast<double>(consensusParams.nSubsidyHalvingInterval);
     CAmount nSubsidy = 2 * COIN;
     if (halvings < 1.0)
@@ -1073,7 +1074,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     uint256 prevHash;
     prevHash = pindexBestHeader->pprev->GetBlockHash();
     // Get previous block hash to use as seed
-    string hashHex = std::string prevHash::ToString();
+    std::string hashHex = std::string prevHash::ToString();
     int intHex = ASCIISentence(hashHex);
     double multiplier;
     int half = (int) halvings;
