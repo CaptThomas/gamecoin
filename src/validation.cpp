@@ -33,7 +33,7 @@
 #include "tinyformat.h"
 #include "txdb.h"
 #include "txmempool.h"
-#include "uint256.cpp"
+#include "uint256.h"
 #include "ui_interface.h"
 #include "undo.h"
 #include "util.h"
