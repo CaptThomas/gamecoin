@@ -1074,7 +1074,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     uint256 prevHash;
     prevHash = pindexBestHeader->pprev->GetBlockHash();
     // Get previous block hash to use as seed
-    std::string hashHex = std::string prevHash::ToString();
+    std::string hashHex = std::string base_blob<256>::ToString() prevHash;
     int intHex = ASCIISentence(hashHex);
     double multiplier;
     int half = (int) halvings;
