@@ -1045,42 +1045,9 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex, const Consensus
     unipindex = pindex;
     return true;
 }
-int ASCIISentence(std::string str)
-{
-    using namespace std;
-    int l = str.length();
-    int convert;
-    int sum = 0;
-    for (int i = 0; i < l; i++) {
-        convert = str[i] - NULL;
-        sum = sum + convert;
-    }
-    return sum;
-}
-double generate(double min, double max, int seed)
-{
-    using namespace std;
-
-    static default_random_engine generator(seed);
-    uniform_real_distribution<double> distribution(min, max);
-
-    return distribution(generator);
-}
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
     CAmount nSubsidy = 2 * COIN;
-    uint256 prevHash;
-    if(unipindex->pprev)
-	{
-		prevHash = unipindex->pprev->GetBlockHash();
-	}
-    if (nHeight > 2)
-    {
-        std::string cseed_str = prevHash.ToString().substr(8,7);
-        int seed = ASCIISentence(cseed_str);
-        double multiplier = generate(0.5, 1.5, seed);
-        nSubsidy = multiplier * nSubsidy;
-    }
     return nSubsidy;
 }
 
